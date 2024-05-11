@@ -19,7 +19,7 @@ void shell_loop(Mode mode) {
                 }
                 else {
                         Command* command = prompt_command();
-			if (strcmp("exit", command->command) == 0) {
+			if (strcmp("exit\n", command->command) == 0) {
 				exit(EXIT_SUCCESS);
 			}
                         system(command->command);
