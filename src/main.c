@@ -5,8 +5,31 @@
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
+
 #include "../include/meshellcfg.h"
 #include "../include/utils.h"
+#include "../include/parser.h"
+
+        
+
+void shell_loop(Mode mode) {
+        while (true) {
+                if (mode == BATCH) {
+                        puts("Shell is in batch mode");
+                }
+                else {
+                        Command* command = prompt_command();
+			if (strcmp("exit", command->command) == 0) {
+				exit(EXIT_SUCCESS);
+			}
+                        system(command->command);
+                        free(command->args);
+                        free(command->command);
+                        free(command);
+                }
+        }
+}
+
 
 
 cfgitem items[] = {
@@ -19,8 +42,9 @@ cfgitem items[] = {
 
 
 int main(void) {
+	system("clear");
+	
 	FILE* file = fopen("./mishell.rc", "r");
-
 	if (!file) {
 		perror("Could not open file.");
 		exit(EXIT_FAILURE);
@@ -115,16 +139,13 @@ int main(void) {
 	strcat(str, path.value);
 	strcat(str, command);
 
-
-
-
 	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
 	print_config(items, cfg_items_length);
+	
 
-
-
-	// Clean up
-
+	Mode mode = INTERP;
+	shell_loop(mode);
+	
 	free_cfg_items(items, cfg_items_length);
 	free(buffer);
 
