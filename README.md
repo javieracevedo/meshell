@@ -1,4 +1,4 @@
-# Mishell
+# Meshell
 
 Second re-write of a variant of the UNIX shell to learn about process management, pipes and redirects.
 
