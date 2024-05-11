@@ -21,13 +21,11 @@ Second re-write of a variant of the UNIX shell to learn about process management
 
 ### Compilation
 
-
 Run `make` in root directory
 
 
 ### Usage
 
-
-RUN `./bin/run/main.out`
+Run `./bin/run/main.out`
 
 
