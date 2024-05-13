@@ -1,7 +1,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string.h>	
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
@@ -10,16 +10,15 @@
 #include "../include/utils.h"
 #include "../include/parser.h"
 
-        
 
 void shell_loop(Mode mode) {
         while (true) {
-                if (mode == BATCH) {
-                        puts("Shell is in batch mode");
+		if (mode == BATCH) {
+			puts("Shell is in batch mode");
                 }
                 else {
                         Command* command = prompt_command();
-			if (strcmp("exit", command->command) == 0) {
+			if (strcmp("exit\n", command->command) == 0) {
 				exit(EXIT_SUCCESS);
 			}
                         system(command->command);
@@ -29,7 +28,6 @@ void shell_loop(Mode mode) {
                 }
         }
 }
-
 
 
 cfgitem items[] = {
@@ -97,7 +95,6 @@ int main(void) {
 	do {
 		token = cust_strsep(&quotes, buffer_size_quotes, ',');
 		
-		
 		if (!token) {
 			quote_list[string_count] = quotes;
 		}
@@ -145,9 +142,11 @@ int main(void) {
 
 	Mode mode = INTERP;
 	shell_loop(mode);
-	
+
 	free_cfg_items(items, cfg_items_length);
 	free(buffer);
 
 	return 0;
 }
+
+
