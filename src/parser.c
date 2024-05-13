@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-
 #define MAX_COMMAND_LINE_LENGTH 1024
 #define MAX_COMMAND_LENGTH 1024
 #define MAX_COMMAND_ARGS_LENGTH 1024
@@ -39,7 +38,6 @@ Command* parse_command_line(char* command_line) {
 	return command;
 }
 
-// TODO: maybe this should be called parse command line instead
 Command* prompt_command() {
         printf("~/home/ ");                                      
 	char command_line_buffer[MAX_COMMAND_LINE_LENGTH];
