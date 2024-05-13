@@ -10,9 +10,10 @@
 
 Command* init_command_struct() {
         Command* command = (Command*)malloc(sizeof(Command));
-        command->command = (char*)malloc(sizeof(char) * MAX_COMMAND_LENGTH);
+	command->command = (char*)malloc(sizeof(char) * MAX_COMMAND_LENGTH);
         command->args = (char**)calloc(1024, sizeof(char *));
 }
+
 
 Command* parse_command_line(char* command_line) {
 	if (!command_line) {
@@ -28,13 +29,15 @@ Command* parse_command_line(char* command_line) {
 	}
 	
 	char* token = command_line;
-	int idx = 0; 
+	int count = 0; 
 	while (token) {
 		token = strsep(&command_line, " ");
-		if (token)
-			command->args[idx] = token;
-		idx++;
+		if (token) {
+			command->args[count] = token;
+			count++; 
+		}
 	}
+	command->argc = count;
 	return command;
 }
 
