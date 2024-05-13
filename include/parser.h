@@ -7,7 +7,7 @@ typedef enum {
 
 typedef struct {
 	char* command;
-	char* args;
+	char** args;
 } Command;
 
 
