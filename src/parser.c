@@ -12,23 +12,45 @@
 Command* init_command_struct() {
         Command* command = (Command*)malloc(sizeof(Command));
         command->command = (char*)malloc(sizeof(char) * MAX_COMMAND_LENGTH);
-        command->args = (char*)malloc(sizeof(char) * MAX_COMMAND_ARGS_LENGTH);
+        command->args = (char**)calloc(1024, sizeof(char *));
 }
 
+Command* parse_command_line(char* command_line) {
+	if (!command_line) {
+		return NULL;
+	}
 
+        Command* command = init_command_struct();
+	char* command_name = strsep(&command_line, " ");
+	if (command_name && strcmp(command_name, "\n") != 0) {
+		command->command = strdup(command_name);
+	} else {
+		return NULL;
+	}
+	
+	char* token = command_line;
+	int idx = 0; 
+	while (token) {
+		token = strsep(&command_line, " ");
+		if (token)
+			command->args[idx] = token;
+		idx++;
+	}
+	return command;
+}
+
+// TODO: maybe this should be called parse command line instead
 Command* prompt_command() {
         printf("~/home/ ");                                      
-        Command* command = init_command_struct();
-	char command_line[MAX_COMMAND_LINE_LENGTH];
-	char* result = fgets(command_line, MAX_COMMAND_LINE_LENGTH, stdin);
+	char command_line_buffer[MAX_COMMAND_LINE_LENGTH];
+	char* command_line = fgets(command_line_buffer, MAX_COMMAND_LINE_LENGTH, stdin);
 
-	if (!result) {
+	if (!command_line) {
 		perror("Could not read from stdin :: prompt_command");
 		exit(EXIT_FAILURE);
 	}
-	
-	command->command = strdup(result);
+
+	Command* command = parse_command_line(command_line);
         return command;
 }
-
 
