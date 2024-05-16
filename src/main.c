@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
+#include <unistd.h>
 
 #include "../include/meshellcfg.h"
 #include "../include/utils.h"
@@ -17,14 +18,19 @@ void shell_loop(Mode mode) {
 			puts("Shell is in batch mode");
                 }
                 else {
-                        Command* command = prompt_command();
-			if (strcmp("exit\n", command->command) == 0) {
+			char** command = prompt_command(); 
+			
+			if (strcmp("exit\n", command[0]) == 0) {
 				exit(EXIT_SUCCESS);
 			}
-                        system(command->command);
-                        free(command->args);
-                        free(command->command);
-                        free(command);
+			
+			// TODO: fork before calling this
+			execvp(command[0], command);
+
+			int command_length = get_command_length(command);
+			for (int i=0; i<command_length; i++) {
+				free(command[i]);
+			}
                 }
         }
 }

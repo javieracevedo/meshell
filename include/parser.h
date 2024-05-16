@@ -5,13 +5,8 @@ typedef enum {
 	INTERP
 } Mode;
 
-typedef struct {
-	char* command;
-	char** args;
-	int argc;
-} Command;
 
-
-Command* init_command_struct();
-Command* prompt_command();
+int get_command_length(char ** command);
+char** init_command_struct();
+char** prompt_command();
 
