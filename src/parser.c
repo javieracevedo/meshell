@@ -9,6 +9,15 @@
 #define MAX_COMMAND_ARGS_LENGTH 1024
 
 
+/*
+ * 	TODO
+ * 	
+ * 	1. Modify parser to use a struct with the following form { char** command, int argc}
+ *	2. 
+ *
+ * */
+
+
 int get_command_length(char** command) {
 	int count = 0;
 	for (int i=0; i<MAX_COMMAND_LENGTH; i++) {
@@ -62,5 +71,34 @@ char** prompt_command() {
 
 	char** command = parse_command_line(command_line);
         return command;
+}
+
+
+char** read_batched_command(FILE *file) {
+	char command_line_buffer[MAX_COMMAND_LINE_LENGTH];
+	char* command_line = fgets(command_line_buffer, MAX_COMMAND_LINE_LENGTH, file);
+	int char_count = 0;
+
+	if (!command_line || strcmp(command_line, "") == 0 || strcmp(command_line, "\n") == 0) {
+		// TODO: define globally when to return NULL, and how to handle NULL values within functions
+		// I need to come up with a personal convention for this
+		return NULL;
+	}
+
+	// QUESTION: is this dangerous
+	while (char_count < MAX_COMMAND_LINE_LENGTH && command_line[char_count]) { 
+		char_count++;
+	}
+	// Replace the new line character by a null character
+	command_line[char_count - 1] = '\0';
+
+	if (!command_line) {
+		perror("Could not read from file :: read_batched_command");
+		exit(EXIT_FAILURE);
+	}
+
+	char** command = parse_command_line(command_line);
+        
+	return command;
 }
 
