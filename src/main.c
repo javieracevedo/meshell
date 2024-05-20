@@ -12,21 +12,69 @@
 #include "../include/parser.h"
 
 
+
+cfgitem items[] = {    
+        {"background_color", NULL, validate_bg_color},    
+        {"prompt_color", NULL, validate_prompt_color},    
+        {"path", NULL, validate_path},    
+        {"start_sound", NULL, validate_start_sound},    
+        {"qotd_list", NULL, validate_qotd_list}    
+};    
+
+
+int check_cmd_access(char* command, cfgitem* shell_path) {
+        char* path_copy = strdup(shell_path->value);
+        char* token = "";
+
+	while (token) {
+		token = strsep(&path_copy, ":");
+		char* token_copy;
+		if (token) {
+        		token_copy = strdup(token);
+			int token_length = strlen(token_copy);
+			if (token_copy[token_length - 1] != '/') {
+				token_copy = strcat(token_copy, "/");
+			}
+		}
+
+		if (token) {
+			char* potential_path = strcat(token_copy, command);
+			int can_access = access(potential_path, F_OK);
+			if (can_access == 0) {
+				return can_access;
+			}
+		}
+	}
+	return -1;
+}
+
+
+
+
 void shell_loop(Mode mode) {
         while (true) {
 		if (mode == BATCH) {
 			puts("Shell is in batch mode");
                 }
                 else {
+			// TODO: modify parser again, so it includes the count of arguments. To avoid buffer overflows.
 			char** command = prompt_command(); 
+			
+			size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
+			cfgitem* path = linear_search(items, cfg_items_length, "path");
 			
 			if (strcmp("exit\n", command[0]) == 0) {
 				exit(EXIT_SUCCESS);
 			}
-			
-			// TODO: fork before calling this
-			execvp(command[0], command);
 
+			if (check_cmd_access(command[0], path) == 0) {
+				// Message: incomplete, just for testing purposes
+				int pid = fork();
+				if (pid == 0) {
+					execvp(command[0], command);
+				}
+			}
+			
 			int command_length = get_command_length(command);
 			for (int i=0; i<command_length; i++) {
 				free(command[i]);
@@ -34,15 +82,6 @@ void shell_loop(Mode mode) {
                 }
         }
 }
-
-
-cfgitem items[] = {
-	{"background_color", NULL, validate_bg_color},
-	{"prompt_color", NULL, validate_prompt_color},
-	{"path", NULL, validate_path},
-	{"start_sound", NULL, validate_start_sound},
-	{"qotd_list", NULL, validate_qotd_list}
-};
 
 
 int main(void) {
