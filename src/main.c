@@ -48,39 +48,51 @@ int check_cmd_access(char* command, cfgitem* shell_path) {
 	return -1;
 }
 
+int execute_command(char** command) {
+	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
+	cfgitem* path = linear_search(items, cfg_items_length, "path");
+			
+	if (strcmp("exit\n", command[0]) == 0) {
+		exit(EXIT_SUCCESS);
+	}
 
+	if (check_cmd_access(command[0], path) == 0) {
+		// Message: incomplete, just for testing purposes
+		int pid = fork();
+		if (pid == 0) {
+			execvp(command[0], command);
+		}
+	}
+			
+	int command_length = get_command_length(command);
+	for (int i=0; i<command_length; i++) {
+		free(command[i]);
+	}
+}
 
 
 void shell_loop(Mode mode) {
-        while (true) {
-		if (mode == BATCH) {
-			puts("Shell is in batch mode");
-                }
+        FILE* batched_commands_file = fopen("command-batch", "r");
+	if (!batched_commands_file) {
+		perror("Could not open commands batch file.");
+		exit(EXIT_FAILURE);
+	}
+
+	while (true) {
+		char** command;
+
+		if (mode == BATCH) {	
+			command = read_batched_command(batched_commands_file);
+			if (!command || feof(batched_commands_file)) break;
+		}
                 else {
 			// TODO: modify parser again, so it includes the count of arguments. To avoid buffer overflows.
-			char** command = prompt_command(); 
-			
-			size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
-			cfgitem* path = linear_search(items, cfg_items_length, "path");
-			
-			if (strcmp("exit\n", command[0]) == 0) {
-				exit(EXIT_SUCCESS);
-			}
-
-			if (check_cmd_access(command[0], path) == 0) {
-				// Message: incomplete, just for testing purposes
-				int pid = fork();
-				if (pid == 0) {
-					execvp(command[0], command);
-				}
-			}
-			
-			int command_length = get_command_length(command);
-			for (int i=0; i<command_length; i++) {
-				free(command[i]);
-			}
-                }
+			command = prompt_command(); 
+		}
+		execute_command(command);
         }
+
+	// TODO: remember to free stuff here
 }
 
 
@@ -185,7 +197,7 @@ int main(void) {
 	print_config(items, cfg_items_length);
 	
 
-	Mode mode = INTERP;
+	Mode mode = BATCH;
 	shell_loop(mode);
 
 	free_cfg_items(items, cfg_items_length);
