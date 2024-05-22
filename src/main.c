@@ -49,10 +49,12 @@ int check_cmd_access(char* command, cfgitem* shell_path) {
 }
 
 int execute_command(char** command) {
+	if (!command) return -1;
+
 	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
 	cfgitem* path = linear_search(items, cfg_items_length, "path");
 			
-	if (strcmp("exit\n", command[0]) == 0) {
+	if (strcmp("exit", command[0]) == 0) {
 		exit(EXIT_SUCCESS);
 	}
 
@@ -68,27 +70,32 @@ int execute_command(char** command) {
 	for (int i=0; i<command_length; i++) {
 		free(command[i]);
 	}
+
+	return 0;
 }
 
 
-void shell_loop(Mode mode) {
-        FILE* batched_commands_file = fopen("command-batch", "r");
+void batch_loop(char* batch_file_name) {
+	FILE* batched_commands_file = fopen(batch_file_name, "r");
 	if (!batched_commands_file) {
-		perror("Could not open commands batch file.");
+		perror("fopen");
 		exit(EXIT_FAILURE);
 	}
-
+       
 	while (true) {
-		char** command;
+		char** command = read_batched_command(batched_commands_file);
+		if (!command || feof(batched_commands_file)) break;
+		execute_command(command);
+        }
 
-		if (mode == BATCH) {	
-			command = read_batched_command(batched_commands_file);
-			if (!command || feof(batched_commands_file)) break;
-		}
-                else {
-			// TODO: modify parser again, so it includes the count of arguments. To avoid buffer overflows.
-			command = prompt_command(); 
-		}
+	// TODO: remember to free stuff here
+
+}
+
+
+void shell_loop() {
+	while (true) {
+		char** command = prompt_command(); 
 		execute_command(command);
         }
 
@@ -96,7 +103,17 @@ void shell_loop(Mode mode) {
 }
 
 
-int main(void) {
+int main(int argc, char** argv) {
+	char* batch_file_name = NULL;
+	Mode shell_mode;
+
+	if (argc < 2) {
+		shell_mode = INTER;
+	} else {
+		shell_mode = BATCH;
+		batch_file_name = argv[1];
+	}
+
 	system("clear");
 	
 	FILE* file = fopen("./mishell.rc", "r");
@@ -195,11 +212,13 @@ int main(void) {
 
 	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
 	print_config(items, cfg_items_length);
+
 	
-
-	Mode mode = BATCH;
-	shell_loop(mode);
-
+	if (shell_mode == INTER)
+		shell_loop();
+	else
+		batch_loop(batch_file_name);			
+	
 	free_cfg_items(items, cfg_items_length);
 	free(buffer);
 

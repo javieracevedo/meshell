@@ -75,9 +75,12 @@ char** prompt_command() {
 
 
 char** read_batched_command(FILE *file) {
-	char command_line_buffer[MAX_COMMAND_LINE_LENGTH];
-	char* command_line = fgets(command_line_buffer, MAX_COMMAND_LINE_LENGTH, file);
-	int char_count = 0;
+	if (!file) {
+		return NULL;
+	}
+	size_t initial_line_size = 0;
+	char* command_line = NULL;
+	ssize_t char_count = getdelim(&command_line, &initial_line_size, '\n', file);
 
 	if (!command_line || strcmp(command_line, "") == 0 || strcmp(command_line, "\n") == 0) {
 		// TODO: define globally when to return NULL, and how to handle NULL values within functions
@@ -85,10 +88,6 @@ char** read_batched_command(FILE *file) {
 		return NULL;
 	}
 
-	// QUESTION: is this dangerous
-	while (char_count < MAX_COMMAND_LINE_LENGTH && command_line[char_count]) { 
-		char_count++;
-	}
 	// Replace the new line character by a null character
 	command_line[char_count - 1] = '\0';
 
