@@ -2,7 +2,7 @@
 
 typedef enum {
 	BATCH,
-	INTERP
+	INTER
 } Mode;
 
 
