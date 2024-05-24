@@ -6,6 +6,8 @@
 #include <errno.h>
 #include <time.h>
 #include <unistd.h>
+#include <sys/wait.h>
+
 
 #include "../include/meshellcfg.h"
 #include "../include/utils.h"
@@ -50,6 +52,10 @@ int check_cmd_access(char* command, cfgitem* shell_path) {
 
 int execute_command(char** command) {
 	if (!command) return -1;
+    
+	pid_t cpid, w;
+    	int status;
+
 
 	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
 	cfgitem* path = linear_search(items, cfg_items_length, "path");
@@ -60,9 +66,17 @@ int execute_command(char** command) {
 
 	if (check_cmd_access(command[0], path) == 0) {
 		// Message: incomplete, just for testing purposes
-		int pid = fork();
-		if (pid == 0) {
+		cpid = fork();
+		if (cpid == 0) {
 			execvp(command[0], command);
+		} else {
+			do {
+				w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
+				if (w == -1) {
+					perror("waitpid");
+					exit(EXIT_FAILURE);
+				}
+			} while (WIFCONTINUED(status));
 		}
 	}
 			
