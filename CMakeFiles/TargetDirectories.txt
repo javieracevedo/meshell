@@ -1,0 +1,3 @@
+/home/panic/Code/cs-projects/meshell/CMakeFiles/meshell.dir
+/home/panic/Code/cs-projects/meshell/CMakeFiles/edit_cache.dir
+/home/panic/Code/cs-projects/meshell/CMakeFiles/rebuild_cache.dir
