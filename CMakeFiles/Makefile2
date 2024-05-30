@@ -98,12 +98,12 @@ include/custom_math/clean: include/custom_math/CMakeFiles/math.dir/clean
 CMakeFiles/meshell.dir/all: include/custom_math/CMakeFiles/math.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=4,5,6,7,8 "Built target meshell"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=4,5,6,7,8,9 "Built target meshell"
 .PHONY : CMakeFiles/meshell.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/meshell.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/meshell.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 0
 .PHONY : CMakeFiles/meshell.dir/rule

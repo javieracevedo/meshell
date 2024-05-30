@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/meshell.dir/include/custom_math/operations.c.o"
+  "CMakeFiles/meshell.dir/include/custom_math/operations.c.o.d"
   "CMakeFiles/meshell.dir/src/main.c.o"
   "CMakeFiles/meshell.dir/src/main.c.o.d"
   "CMakeFiles/meshell.dir/src/meshellcfg.c.o"

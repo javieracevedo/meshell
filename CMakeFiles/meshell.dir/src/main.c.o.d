@@ -87,4 +87,6 @@ CMakeFiles/meshell.dir/src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
  /home/panic/Code/cs-projects/meshell/src/meshellcfg.h \
  /home/panic/Code/cs-projects/meshell/src/utils.h \
- /home/panic/Code/cs-projects/meshell/src/parser.h
+ /home/panic/Code/cs-projects/meshell/src/parser.h \
+ /home/panic/Code/cs-projects/meshell/src/../include/custom_math/operations.h \
+ /home/panic/Code/cs-projects/meshell/src/../include/custom_math/constants.h

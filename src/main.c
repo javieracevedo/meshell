@@ -26,6 +26,7 @@
 
 
 
+
 cfgitem items[] = {    
         {"background_color", NULL, validate_bg_color},    
         {"prompt_color", NULL, validate_prompt_color},    
@@ -139,7 +140,7 @@ int main(int argc, char** argv) {
 		batch_file_name = argv[1];
 	}
 
-	system("clear");
+	// system("clear");
 	
 	FILE* file = fopen("./mishell.rc", "r");
 	if (!file) {

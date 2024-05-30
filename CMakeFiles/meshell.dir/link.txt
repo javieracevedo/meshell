@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/meshell.dir/src/utils.c.o CMakeFiles/meshell.dir/src/parser.c.o CMakeFiles/meshell.dir/src/meshellcfg.c.o CMakeFiles/meshell.dir/src/main.c.o -o meshell  include/custom_math/libmath.a 
+/usr/bin/cc CMakeFiles/meshell.dir/src/utils.c.o CMakeFiles/meshell.dir/src/parser.c.o CMakeFiles/meshell.dir/src/meshellcfg.c.o CMakeFiles/meshell.dir/src/main.c.o CMakeFiles/meshell.dir/include/custom_math/operations.c.o -o meshell  include/custom_math/libmath.a 

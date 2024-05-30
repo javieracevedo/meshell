@@ -142,6 +142,30 @@ math/fast:
 	$(MAKE) $(MAKESILENT) -f include/custom_math/CMakeFiles/math.dir/build.make include/custom_math/CMakeFiles/math.dir/build
 .PHONY : math/fast
 
+include/custom_math/operations.o: include/custom_math/operations.c.o
+.PHONY : include/custom_math/operations.o
+
+# target to build an object file
+include/custom_math/operations.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/include/custom_math/operations.c.o
+.PHONY : include/custom_math/operations.c.o
+
+include/custom_math/operations.i: include/custom_math/operations.c.i
+.PHONY : include/custom_math/operations.i
+
+# target to preprocess a source file
+include/custom_math/operations.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/include/custom_math/operations.c.i
+.PHONY : include/custom_math/operations.c.i
+
+include/custom_math/operations.s: include/custom_math/operations.c.s
+.PHONY : include/custom_math/operations.s
+
+# target to generate assembly for a file
+include/custom_math/operations.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/include/custom_math/operations.c.s
+.PHONY : include/custom_math/operations.c.s
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -248,6 +272,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... math"
 	@echo "... meshell"
+	@echo "... include/custom_math/operations.o"
+	@echo "... include/custom_math/operations.i"
+	@echo "... include/custom_math/operations.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
