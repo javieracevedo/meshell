@@ -129,6 +129,19 @@ meshell/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/build
 .PHONY : meshell/fast
 
+#=============================================================================
+# Target rules for targets named math
+
+# Build rule for target.
+math: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 math
+.PHONY : math
+
+# fast build rule for target.
+math/fast:
+	$(MAKE) $(MAKESILENT) -f include/custom_math/CMakeFiles/math.dir/build.make include/custom_math/CMakeFiles/math.dir/build
+.PHONY : math/fast
+
 src/main.o: src/main.c.o
 .PHONY : src/main.o
 
@@ -152,6 +165,30 @@ src/main.s: src/main.c.s
 src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/src/main.c.s
 .PHONY : src/main.c.s
+
+src/meshellcfg.o: src/meshellcfg.c.o
+.PHONY : src/meshellcfg.o
+
+# target to build an object file
+src/meshellcfg.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/src/meshellcfg.c.o
+.PHONY : src/meshellcfg.c.o
+
+src/meshellcfg.i: src/meshellcfg.c.i
+.PHONY : src/meshellcfg.i
+
+# target to preprocess a source file
+src/meshellcfg.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/src/meshellcfg.c.i
+.PHONY : src/meshellcfg.c.i
+
+src/meshellcfg.s: src/meshellcfg.c.s
+.PHONY : src/meshellcfg.s
+
+# target to generate assembly for a file
+src/meshellcfg.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/src/meshellcfg.c.s
+.PHONY : src/meshellcfg.c.s
 
 src/parser.o: src/parser.c.o
 .PHONY : src/parser.o
@@ -209,10 +246,14 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... math"
 	@echo "... meshell"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/meshellcfg.o"
+	@echo "... src/meshellcfg.i"
+	@echo "... src/meshellcfg.s"
 	@echo "... src/parser.o"
 	@echo "... src/parser.i"
 	@echo "... src/parser.s"

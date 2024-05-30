@@ -1,3 +1,6 @@
 /home/panic/Code/cs-projects/meshell/CMakeFiles/meshell.dir
 /home/panic/Code/cs-projects/meshell/CMakeFiles/edit_cache.dir
 /home/panic/Code/cs-projects/meshell/CMakeFiles/rebuild_cache.dir
+/home/panic/Code/cs-projects/meshell/include/custom_math/CMakeFiles/math.dir
+/home/panic/Code/cs-projects/meshell/include/custom_math/CMakeFiles/edit_cache.dir
+/home/panic/Code/cs-projects/meshell/include/custom_math/CMakeFiles/rebuild_cache.dir

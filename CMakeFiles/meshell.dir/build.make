@@ -69,19 +69,19 @@ include CMakeFiles/meshell.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/meshell.dir/flags.make
 
-CMakeFiles/meshell.dir/src/main.c.o: CMakeFiles/meshell.dir/flags.make
-CMakeFiles/meshell.dir/src/main.c.o: src/main.c
-CMakeFiles/meshell.dir/src/main.c.o: CMakeFiles/meshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/meshell.dir/src/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/meshell.dir/src/main.c.o -MF CMakeFiles/meshell.dir/src/main.c.o.d -o CMakeFiles/meshell.dir/src/main.c.o -c /home/panic/Code/cs-projects/meshell/src/main.c
+CMakeFiles/meshell.dir/src/utils.c.o: CMakeFiles/meshell.dir/flags.make
+CMakeFiles/meshell.dir/src/utils.c.o: src/utils.c
+CMakeFiles/meshell.dir/src/utils.c.o: CMakeFiles/meshell.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/meshell.dir/src/utils.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/meshell.dir/src/utils.c.o -MF CMakeFiles/meshell.dir/src/utils.c.o.d -o CMakeFiles/meshell.dir/src/utils.c.o -c /home/panic/Code/cs-projects/meshell/src/utils.c
 
-CMakeFiles/meshell.dir/src/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/meshell.dir/src/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/panic/Code/cs-projects/meshell/src/main.c > CMakeFiles/meshell.dir/src/main.c.i
+CMakeFiles/meshell.dir/src/utils.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/meshell.dir/src/utils.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/panic/Code/cs-projects/meshell/src/utils.c > CMakeFiles/meshell.dir/src/utils.c.i
 
-CMakeFiles/meshell.dir/src/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/main.c -o CMakeFiles/meshell.dir/src/main.c.s
+CMakeFiles/meshell.dir/src/utils.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/utils.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/utils.c -o CMakeFiles/meshell.dir/src/utils.c.s
 
 CMakeFiles/meshell.dir/src/parser.c.o: CMakeFiles/meshell.dir/flags.make
 CMakeFiles/meshell.dir/src/parser.c.o: src/parser.c
@@ -97,35 +97,52 @@ CMakeFiles/meshell.dir/src/parser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/parser.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/parser.c -o CMakeFiles/meshell.dir/src/parser.c.s
 
-CMakeFiles/meshell.dir/src/utils.c.o: CMakeFiles/meshell.dir/flags.make
-CMakeFiles/meshell.dir/src/utils.c.o: src/utils.c
-CMakeFiles/meshell.dir/src/utils.c.o: CMakeFiles/meshell.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/meshell.dir/src/utils.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/meshell.dir/src/utils.c.o -MF CMakeFiles/meshell.dir/src/utils.c.o.d -o CMakeFiles/meshell.dir/src/utils.c.o -c /home/panic/Code/cs-projects/meshell/src/utils.c
+CMakeFiles/meshell.dir/src/meshellcfg.c.o: CMakeFiles/meshell.dir/flags.make
+CMakeFiles/meshell.dir/src/meshellcfg.c.o: src/meshellcfg.c
+CMakeFiles/meshell.dir/src/meshellcfg.c.o: CMakeFiles/meshell.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/meshell.dir/src/meshellcfg.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/meshell.dir/src/meshellcfg.c.o -MF CMakeFiles/meshell.dir/src/meshellcfg.c.o.d -o CMakeFiles/meshell.dir/src/meshellcfg.c.o -c /home/panic/Code/cs-projects/meshell/src/meshellcfg.c
 
-CMakeFiles/meshell.dir/src/utils.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/meshell.dir/src/utils.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/panic/Code/cs-projects/meshell/src/utils.c > CMakeFiles/meshell.dir/src/utils.c.i
+CMakeFiles/meshell.dir/src/meshellcfg.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/meshell.dir/src/meshellcfg.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/panic/Code/cs-projects/meshell/src/meshellcfg.c > CMakeFiles/meshell.dir/src/meshellcfg.c.i
 
-CMakeFiles/meshell.dir/src/utils.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/utils.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/utils.c -o CMakeFiles/meshell.dir/src/utils.c.s
+CMakeFiles/meshell.dir/src/meshellcfg.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/meshellcfg.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/meshellcfg.c -o CMakeFiles/meshell.dir/src/meshellcfg.c.s
+
+CMakeFiles/meshell.dir/src/main.c.o: CMakeFiles/meshell.dir/flags.make
+CMakeFiles/meshell.dir/src/main.c.o: src/main.c
+CMakeFiles/meshell.dir/src/main.c.o: CMakeFiles/meshell.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/meshell.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/meshell.dir/src/main.c.o -MF CMakeFiles/meshell.dir/src/main.c.o.d -o CMakeFiles/meshell.dir/src/main.c.o -c /home/panic/Code/cs-projects/meshell/src/main.c
+
+CMakeFiles/meshell.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/meshell.dir/src/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/panic/Code/cs-projects/meshell/src/main.c > CMakeFiles/meshell.dir/src/main.c.i
+
+CMakeFiles/meshell.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/meshell.dir/src/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/panic/Code/cs-projects/meshell/src/main.c -o CMakeFiles/meshell.dir/src/main.c.s
 
 # Object files for target meshell
 meshell_OBJECTS = \
-"CMakeFiles/meshell.dir/src/main.c.o" \
+"CMakeFiles/meshell.dir/src/utils.c.o" \
 "CMakeFiles/meshell.dir/src/parser.c.o" \
-"CMakeFiles/meshell.dir/src/utils.c.o"
+"CMakeFiles/meshell.dir/src/meshellcfg.c.o" \
+"CMakeFiles/meshell.dir/src/main.c.o"
 
 # External object files for target meshell
 meshell_EXTERNAL_OBJECTS =
 
-meshell: CMakeFiles/meshell.dir/src/main.c.o
-meshell: CMakeFiles/meshell.dir/src/parser.c.o
 meshell: CMakeFiles/meshell.dir/src/utils.c.o
+meshell: CMakeFiles/meshell.dir/src/parser.c.o
+meshell: CMakeFiles/meshell.dir/src/meshellcfg.c.o
+meshell: CMakeFiles/meshell.dir/src/main.c.o
 meshell: CMakeFiles/meshell.dir/build.make
+meshell: include/custom_math/libmath.a
 meshell: CMakeFiles/meshell.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable meshell"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable meshell"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/meshell.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

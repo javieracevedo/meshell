@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/meshell.dir/src/main.c.o"
   "CMakeFiles/meshell.dir/src/main.c.o.d"
+  "CMakeFiles/meshell.dir/src/meshellcfg.c.o"
+  "CMakeFiles/meshell.dir/src/meshellcfg.c.o.d"
   "CMakeFiles/meshell.dir/src/parser.c.o"
   "CMakeFiles/meshell.dir/src/parser.c.o.d"
   "CMakeFiles/meshell.dir/src/utils.c.o"

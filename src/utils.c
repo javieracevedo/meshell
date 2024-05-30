@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../include/utils.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>

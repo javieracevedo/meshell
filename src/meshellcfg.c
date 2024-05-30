@@ -1,4 +1,4 @@
-#include "../include/meshellcfg.h"
+#include "meshellcfg.h"
 
 
 cfgitem* linear_search(cfgitem* items, size_t length, const char* key) {

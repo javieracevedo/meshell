@@ -9,9 +9,20 @@
 #include <sys/wait.h>
 
 
-#include "../include/meshellcfg.h"
-#include "../include/utils.h"
-#include "../include/parser.h"
+
+#include "meshellcfg.h"
+#include "utils.h"
+#include "parser.h"
+
+
+
+// Math Lib
+
+#ifdef USE_GETLINE
+#include "../include/custom_math/operations.h"
+#include "../include/custom_math/constants.h"
+#endif
+
 
 
 
@@ -136,6 +147,15 @@ int main(int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 
+
+	char* lineptr = NULL;
+	size_t n = 0;
+
+	ssize_t gl = getline(&lineptr, &n, file);
+
+	printf("%d\n", gl);
+	exit(EXIT_SUCCESS);
+	
 	char* buffer = NULL;
 	int buffer_size = 6; // Considering null character
 

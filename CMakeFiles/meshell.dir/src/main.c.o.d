@@ -85,6 +85,6 @@ CMakeFiles/meshell.dir/src/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /home/panic/Code/cs-projects/meshell/src/../include/meshellcfg.h \
- /home/panic/Code/cs-projects/meshell/src/../include/utils.h \
- /home/panic/Code/cs-projects/meshell/src/../include/parser.h
+ /home/panic/Code/cs-projects/meshell/src/meshellcfg.h \
+ /home/panic/Code/cs-projects/meshell/src/utils.h \
+ /home/panic/Code/cs-projects/meshell/src/parser.h

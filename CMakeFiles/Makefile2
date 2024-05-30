@@ -64,29 +64,46 @@ CMAKE_BINARY_DIR = /home/panic/Code/cs-projects/meshell
 
 # The main recursive "all" target.
 all: CMakeFiles/meshell.dir/all
+all: include/custom_math/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: include/custom_math/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/meshell.dir/clean
+clean: include/custom_math/clean
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory include/custom_math
+
+# Recursive "all" directory target.
+include/custom_math/all: include/custom_math/CMakeFiles/math.dir/all
+.PHONY : include/custom_math/all
+
+# Recursive "preinstall" directory target.
+include/custom_math/preinstall:
+.PHONY : include/custom_math/preinstall
+
+# Recursive "clean" directory target.
+include/custom_math/clean: include/custom_math/CMakeFiles/math.dir/clean
+.PHONY : include/custom_math/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/meshell.dir
 
 # All Build rule for target.
-CMakeFiles/meshell.dir/all:
+CMakeFiles/meshell.dir/all: include/custom_math/CMakeFiles/math.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=1,2,3,4 "Built target meshell"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=4,5,6,7,8 "Built target meshell"
 .PHONY : CMakeFiles/meshell.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/meshell.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/meshell.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 0
 .PHONY : CMakeFiles/meshell.dir/rule
@@ -99,6 +116,32 @@ meshell: CMakeFiles/meshell.dir/rule
 CMakeFiles/meshell.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/meshell.dir/build.make CMakeFiles/meshell.dir/clean
 .PHONY : CMakeFiles/meshell.dir/clean
+
+#=============================================================================
+# Target rules for target include/custom_math/CMakeFiles/math.dir
+
+# All Build rule for target.
+include/custom_math/CMakeFiles/math.dir/all:
+	$(MAKE) $(MAKESILENT) -f include/custom_math/CMakeFiles/math.dir/build.make include/custom_math/CMakeFiles/math.dir/depend
+	$(MAKE) $(MAKESILENT) -f include/custom_math/CMakeFiles/math.dir/build.make include/custom_math/CMakeFiles/math.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/panic/Code/cs-projects/meshell/CMakeFiles --progress-num=1,2,3 "Built target math"
+.PHONY : include/custom_math/CMakeFiles/math.dir/all
+
+# Build rule for subdir invocation for target.
+include/custom_math/CMakeFiles/math.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 include/custom_math/CMakeFiles/math.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/panic/Code/cs-projects/meshell/CMakeFiles 0
+.PHONY : include/custom_math/CMakeFiles/math.dir/rule
+
+# Convenience name for target.
+math: include/custom_math/CMakeFiles/math.dir/rule
+.PHONY : math
+
+# clean rule for target.
+include/custom_math/CMakeFiles/math.dir/clean:
+	$(MAKE) $(MAKESILENT) -f include/custom_math/CMakeFiles/math.dir/build.make include/custom_math/CMakeFiles/math.dir/clean
+.PHONY : include/custom_math/CMakeFiles/math.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
