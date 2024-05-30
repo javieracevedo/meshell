@@ -12,82 +12,7 @@
 #include "../include/meshellcfg.h"
 #include "../include/utils.h"
 #include "../include/parser.h"
-
-
-
-cfgitem items[] = {    
-        {"background_color", NULL, validate_bg_color},    
-        {"prompt_color", NULL, validate_prompt_color},    
-        {"path", NULL, validate_path},    
-        {"start_sound", NULL, validate_start_sound},    
-        {"qotd_list", NULL, validate_qotd_list}    
-};    
-
-
-int check_cmd_access(char* command, cfgitem* shell_path) {
-        char* path_copy = strdup(shell_path->value);
-        char* token = "";
-
-	while (token) {
-		token = strsep(&path_copy, ":");
-		char* token_copy;
-		if (token) {
-        		token_copy = strdup(token);
-			int token_length = strlen(token_copy);
-			if (token_copy[token_length - 1] != '/') {
-				token_copy = strcat(token_copy, "/");
-			}
-		}
-
-		if (token) {
-			char* potential_path = strcat(token_copy, command);
-			int can_access = access(potential_path, F_OK);
-			if (can_access == 0) {
-				return can_access;
-			}
-		}
-	}
-	return -1;
-}
-
-int execute_command(char** command) {
-	if (!command) return -1;
-    
-	pid_t cpid, w;
-    	int status;
-
-
-	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
-	cfgitem* path = linear_search(items, cfg_items_length, "path");
-			
-	if (strcmp("exit", command[0]) == 0) {
-		exit(EXIT_SUCCESS);
-	}
-
-	if (check_cmd_access(command[0], path) == 0) {
-		// Message: incomplete, just for testing purposes
-		cpid = fork();
-		if (cpid == 0) {
-			execvp(command[0], command);
-		} else {
-			do {
-				w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
-				if (w == -1) {
-					perror("waitpid");
-					exit(EXIT_FAILURE);
-				}
-			} while (WIFCONTINUED(status));
-		}
-	}
-			
-	int command_length = get_command_length(command);
-	for (int i=0; i<command_length; i++) {
-		free(command[i]);
-	}
-
-	return 0;
-}
-
+#include "../include/exec.h"
 
 void batch_loop(char* batch_file_name) {
 	FILE* batched_commands_file = fopen(batch_file_name, "r");
@@ -156,9 +81,7 @@ int main(int argc, char** argv) {
 			exit(EXIT_FAILURE);
 		}
 
-		size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
-		cfgitem* found = linear_search(items, cfg_items_length, lhs);
-
+		cfgitem* found = get_cfg_item(lhs);
 		if (found) {
 			found->value = getstrcpy(rhs, current_buffer_size);
 			if (!found->validate(rhs)) {
@@ -172,9 +95,9 @@ int main(int argc, char** argv) {
 
 	/*** RANDOM QUOTE OF THE DAY EXAMPLE ***/
 
-	cfgitem qotd_list_config = items[4];
+	cfgitem* qotd_list_config = get_cfg_item("qotd");
 
-	char* quotes = qotd_list_config.value;
+	char* quotes = qotd_list_config->value;
 	int buffer_size_quotes = strlen(quotes);
 	char* token;
 	char* quote_list[MAX_QUOTE_LIST_LENGTH];
@@ -203,37 +126,13 @@ int main(int argc, char** argv) {
 	const char* random_string = quote_list[random_idx];
 
 	printf("qotd: \"%s.\" \n", random_string);
-
-
-	/*** EXAMPLE OF PROMPT COLOR CHANGE ***/
-
-
-	/*** EXAMPLE OF PLAYING SOUND ***/
-	/*if (!PlaySound(TEXT("ateam.wav"), NULL, SND_FILENAME)) {
-		printf("ERROR!");
-	};
-	*/
-
-	/*** EXAMPLE OF COMMAND EXECUTION ***/
-	cfgitem path = items[2];
-	char command[10] = "hello";
-	command[9] = '\0';
-
-	char str[100];
-	str[99] = '\0';
-	strcat(str, path.value);
-	strcat(str, command);
-
-	size_t cfg_items_length = sizeof(items) / sizeof(cfgitem);
-	print_config(items, cfg_items_length);
-
 	
 	if (shell_mode == INTER)
 		shell_loop();
 	else
 		batch_loop(batch_file_name);			
 	
-	free_cfg_items(items, cfg_items_length);
+	free_cfg_items(5);
 	free(buffer);
 
 	return 0;
