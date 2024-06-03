@@ -3,6 +3,8 @@
 #include <sys/wait.h>
 #include "../include/parser.h"
 #include "../include/meshellcfg.h"
+#include "../include/utils.h"
+
 
 int check_cmd_access(char* command, cfgitem* shell_path) {
         char* path_copy = strdup(shell_path->value);
@@ -31,21 +33,40 @@ int check_cmd_access(char* command, cfgitem* shell_path) {
 }
 
 
-
-
-
 int execute_command(char** command) {
 	if (!command) return -1;
-	
+
 	pid_t cpid, w;
     	int status;
 
 
-	cfgitem* path = get_cfg_item("path");
+	cfgitem* path = get_cfg_item("path");	
+	if (!path) {
+		printf("Could not find path if item in shell config\n");
+		exit(EXIT_FAILURE);
+	}
 
+	char* command_name = command[0];
+	
 
-	if (strcmp("exit", command[0]) == 0) {
+	if (strcmp(command_name, "exit") == 0) {
 		exit(EXIT_SUCCESS);
+	}
+	else if (strcmp(command_name, "path") == 0) {
+		int argc = get_command_length(command);
+		if (argc == 1) {
+			printf("%s\n", path->value);
+			return  0;
+		}
+
+		for (int i = 1; i <= argc - 1; i++) {
+			// TODO: ideally, commands should be trimmed, so this wouldn't be needed here
+			if (strcmp(command[i], "") == 0) {
+				continue;
+			}
+			strcat(path->value, ":");
+			strcat(path->value, command[i]);
+		}
 	}
 
 	if (check_cmd_access(command[0], path) == 0) {
