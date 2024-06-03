@@ -60,7 +60,7 @@ char** prompt_command() {
 		exit(EXIT_FAILURE);
 	}
 
-	char *ptr = getcwd(cwd_buffer, (size_t)size);
+	getcwd(cwd_buffer, (size_t)size);
 
 	printf("%s > ", cwd_buffer);
 
@@ -81,7 +81,9 @@ char** prompt_command() {
 	}
 
 	char** command = parse_command_line(command_line);
-        return command;
+        
+	free(cwd_buffer);
+	return command;
 }
 
 
