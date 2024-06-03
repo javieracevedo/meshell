@@ -14,6 +14,10 @@
 #include "../include/parser.h"
 #include "../include/exec.h"
 
+
+#define CONFIG_LINE_MAX_SIZE 1024
+
+
 void batch_loop(char* batch_file_name) {
 	FILE* batched_commands_file = fopen(batch_file_name, "r");
 	if (!batched_commands_file) {
@@ -61,6 +65,8 @@ int main(int argc, char** argv) {
 		exit(EXIT_FAILURE);
 	}
 
+	init_cfgitems();
+
 	char* buffer = NULL;
 	int buffer_size = 6; // Considering null character
 
@@ -83,8 +89,13 @@ int main(int argc, char** argv) {
 
 		cfgitem* found = get_cfg_item(lhs);
 		if (found) {
-			found->value = getstrcpy(rhs, current_buffer_size);
-			if (!found->validate(rhs)) {
+			int max_idx = current_buffer_size;
+			if (current_buffer_size > CONFIG_LINE_MAX_SIZE) max_idx = CONFIG_LINE_MAX_SIZE;
+			
+			// TODO: this does not consider what happens if found->value has not beed malloced
+			for (int idx=0; idx<max_idx; idx++) found->value[idx] = rhs[idx];
+
+			if (!found->validate(found->value)) {
 				printf("%s value is not valid", lhs);
 				exit(EXIT_FAILURE);
 			}
@@ -95,7 +106,11 @@ int main(int argc, char** argv) {
 
 	/*** RANDOM QUOTE OF THE DAY EXAMPLE ***/
 
-	cfgitem* qotd_list_config = get_cfg_item("qotd");
+	cfgitem* qotd_list_config = get_cfg_item("qotd_list");
+	if (!qotd_list_config) {
+		printf("Could not find config item in config list");
+		exit(EXIT_FAILURE);
+	}
 
 	char* quotes = qotd_list_config->value;
 	int buffer_size_quotes = strlen(quotes);
@@ -132,7 +147,7 @@ int main(int argc, char** argv) {
 	else
 		batch_loop(batch_file_name);			
 	
-	free_cfg_items(5);
+	free_cfg_items();
 	free(buffer);
 
 	return 0;
