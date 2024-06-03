@@ -122,3 +122,26 @@ void cust_getline(FILE* file, char** buffer, int buffer_size) {
         (*buffer)[buffer_size - 1] = '\0';
 }
 
+char* trim_spaces(const char *string, size_t string_length) {
+	const char *start = string;
+	const char *end = string + string_length - 1;
+
+	// Skip leading spaces
+	while (start <= end && *start == ' ') {
+		start++;
+	}
+
+	// Skip trailing spaces
+  	while (end >= start && *end == ' ') {
+		end--;
+	}
+
+	// Allocate a new string and copy the trimmed substring
+	size_t trimmed_length = end - start + 1;
+	char *trimmed_string = malloc(trimmed_length + 1);
+	memcpy(trimmed_string, start, trimmed_length);
+	trimmed_string[trimmed_length] = '\0';
+
+  	return trimmed_string;
+}
+
