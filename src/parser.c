@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define MAX_COMMAND_LINE_LENGTH 1024
 // Command includes everything, command name plus arguments
@@ -52,7 +53,17 @@ char** parse_command_line(char* command_line) {
 }
 
 char** prompt_command() {
-        printf("~/home/ ");                                      
+	long size = pathconf(".", _PC_PATH_MAX);
+	char *cwd_buffer = (char *)malloc((size_t)size);
+	if (!cwd_buffer) {
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+
+	char *ptr = getcwd(cwd_buffer, (size_t)size);
+
+	printf("%s > ", cwd_buffer);
+
 	char command_line_buffer[MAX_COMMAND_LINE_LENGTH];
 	char* command_line = fgets(command_line_buffer, MAX_COMMAND_LINE_LENGTH, stdin);
 	int char_count = 0;
