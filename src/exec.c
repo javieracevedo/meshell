@@ -52,11 +52,30 @@ int execute_command(char** command) {
 	if (strcmp(command_name, "exit") == 0) {
 		exit(EXIT_SUCCESS);
 	}
+	else if(strcmp(command_name, "cd") == 0) {
+		int argc = get_command_length(command);
+		if (argc <= 1) {
+			printf("cd: missing argument\n");
+			return -1;
+		}
+
+		if (argc == 2) {
+			int result = chdir(command[1]);
+			if (result < 0) {
+				perror("cd");
+				return -1;
+			}
+		}
+
+		if (argc > 2) {
+			printf("cd: too many arguments\n");
+			return -1;
+		}
+	}
 	else if (strcmp(command_name, "path") == 0) {
 		int argc = get_command_length(command);
 		if (argc == 1) {
 			printf("%s\n", path->value);
-			return  0;
 		}
 
 		for (int i = 1; i <= argc - 1; i++) {
