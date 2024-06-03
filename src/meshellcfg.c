@@ -1,15 +1,25 @@
 #include "../include/meshellcfg.h"
 
 
+#define CONFIG_LINE_MAX_SIZE 1024
+
 cfgitem items[] = {    
        	{"background_color", NULL, validate_bg_color},    
         {"prompt_color", NULL, validate_prompt_color},    
         {"path", NULL, validate_path},    
         {"start_sound", NULL, validate_start_sound},    
         {"qotd_list", NULL, validate_qotd_list}    
-};  
+};
 
 
+
+void init_cfgitems() 
+{
+	// length hard coded for now
+	for (int idx=0; idx<5; idx++) {
+		items[idx].value = calloc(CONFIG_LINE_MAX_SIZE, sizeof(char));
+	}
+}
 
 
 cfgitem* linear_search(cfgitem* items, size_t length, const char* key) {
@@ -90,13 +100,13 @@ void print_config(cfgitem* items, size_t length) {
 }
 
 
-void free_cfg_items(int length) {
-        // QUESTION: why do I need to get the address of items here and then derefference?
-        for (size_t i = 0; i < length; i++) {
-                if (items[i].value) {
-                        free(items[i].value);
-                }
-        }
+void free_cfg_items() {
+	// Length hardcoded for now
+	for (size_t i = 0; i < 5; i++) {
+		if (items[i].value) {
+			free(items[i].value);
+		}
+	}
 }
 
 
