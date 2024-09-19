@@ -1,31 +1,36 @@
-# Meshell
+## About
 
-Second re-write of a variant of the UNIX shell to learn about process management, pipes and redirects.
+This project is a second rewrite of a custom UNIX-like shell, developed as a hands-on exercise while studying "Operating Systems: Three Easy Pieces" (OSTEP). The primary goal is to deepen my understanding of C programming, process management, pipes, and redirection in a UNIX environment.
 
+## Getting Started
 
-### Features
+### Compile
 
+This project is entirely written in C, and compiled with gcc. 
 
-- Somewhat configurable
-	- Backgroung color
-	- Prompt color
-	- Path
-	- Start sounds (annoying feature)
-	- Quote of the day list
-- ASCII rendering
-- Pipes
-- Output redirection
-- Built-in commands (exit, cd, setpath)
-- Parallel command execution
+To compile install `gcc`, clone the repo, and run `make` in the project's root. If successful you should have a binary in `bin/mishell`
 
+### Run
 
-### Compilation
+You can run the shell in two modes:
 
-Run `make` in root directory
+- Batch mode: passing a file with a list of commands to run in batch `bin/mishell batch.txt`
+- Interpreter mode: running the shell with no arguments `bin/mishell`
 
+## Roadmap
 
-### Usage
+- [x] Simple configuration via .rc file
+	- [x] Background color
+	- [x] Prompt color
+	- [x] Path
+	- [ ] Start sounds (annoying feature)
+	- [x] Quote of the day
+- [ ] Piping
+- [ ] Output redirection
+- [ ] Built-in commands: exit, cd, setpath
+- [ ] Parallel command execution
 
-Run `./bin/run/main.out`
+## Acknowledgments
 
+[Authors of Operating Systems: Three Easy Pieces.]() Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau, Arpaci-Dusseau Books, November, 2023 (Version 1.10) 
 
