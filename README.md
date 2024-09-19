@@ -14,8 +14,8 @@ To compile install `gcc`, clone the repo, and run `make` in the project's root. 
 
 You can run the shell in two modes:
 
-- Batch mode: passing a file with a list of commands to run in batch `bin/mishell batch.txt`
-- Interpreter mode: running the shell with no arguments `bin/mishell`
+- **Batch mode**: passing a file with a list of commands to run in batch `bin/mishell batch.txt`
+- **Interpreter mode**: running the shell with no arguments `bin/mishell`
 
 ## Roadmap
 
