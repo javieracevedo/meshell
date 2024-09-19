@@ -1,6 +1,6 @@
 ## About
 
-Second re-write of a variant of the UNIX shell to learn C, process management, pipes, and redirects. This is a project from an Operative System book I'm reading called: Operating Systems: Three Easy Pieces (OSTEP).
+This project is a second rewrite of a custom UNIX-like shell, developed as a hands-on exercise while studying "Operating Systems: Three Easy Pieces" (OSTEP). The primary goal is to deepen my understanding of C programming, process management, pipes, and redirection in a UNIX environment.
 
 ## Getting Started
 
@@ -8,7 +8,7 @@ Second re-write of a variant of the UNIX shell to learn C, process management, p
 
 This project is entirely written in C, and compiled with gcc. 
 
-To compile install `gcc`, clone the repo, and run `make` in the root of the project. If succesfull you should have a binary in `bin/mishell`
+To compile install `gcc`, clone the repo, and run `make` in the project's root. If successful you should have a binary in `bin/mishell`
 
 ### Run
 
@@ -20,7 +20,7 @@ You can run the shell in two modes:
 ## Roadmap
 
 - [x] Simple configuration via .rc file
-	- [x] Backgroung color
+	- [x] Background color
 	- [x] Prompt color
 	- [x] Path
 	- [ ] Start sounds (annoying feature)
